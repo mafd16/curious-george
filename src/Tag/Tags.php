@@ -1,19 +1,18 @@
 <?php
 
-namespace Anax\Book;
+namespace Mafd16\Comment;
 
 use \Anax\Database\ActiveRecordModel;
 
 /**
  * A database driven model.
  */
-class Book extends ActiveRecordModel
+class Tags extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Book";
-
+    protected $tableName = "Tags";
 
 
     /**
@@ -22,9 +21,6 @@ class Book extends ActiveRecordModel
      * @var integer $id primary key auto incremented.
      */
     public $id;
-    public $title;
-    public $author;
-    public $image;
-    public $link;
-    public $year;
+    public $tag;
+    public $rank;
 }

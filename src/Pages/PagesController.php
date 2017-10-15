@@ -101,4 +101,30 @@ class PagesController implements
 
         $pageRender->renderPage(["title" => $title]);
     }
+
+
+    /**
+     * Show the users page.
+     *
+     * @return void
+     */
+    public function getUsers()
+    {
+        $title      = "Users";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+        //$book = new Book();
+        //$book->setDb($this->di->get("db"));
+
+        $data = [
+            //"items" => $book->findAll(),
+            "u1" => "user no 1",
+            "u2" => "user no 2",
+        ];
+
+        $view->add("pages/users", $data);
+        //$view->add("blocks/footer", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
 }

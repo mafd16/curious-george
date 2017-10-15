@@ -22,5 +22,11 @@ return [
             "path" => "tags",
             "callable" => ["pagesController", "getTags"],
         ],
+        [
+            "info" => "The users page.",
+            "requestMethod" => "get",
+            "path" => "users",
+            "callable" => ["pagesController", "getUsers"],
+        ],
     ]
 ];

@@ -40,6 +40,12 @@
                 <a class="navbar-item " href=<?= $di->url->create("tags"); ?>>
                     Tags
                 </a>
+                <a class="navbar-item " href=<?= $di->url->create("users"); ?>>
+                    Users
+                </a>
+                <a class="navbar-item " href=<?= $di->url->create("about"); ?>>
+                    About
+                </a>
 
                 <!--
                 <div class="navbar-item has-dropdown is-hoverable">
@@ -72,6 +78,7 @@
                     <!--</div>
                 </div>-->
 
+                <!--
                 <div class="navbar-item has-dropdown is-hoverable">
                     <div class="navbar-link"> Uppgifter </div>
                     <div class="navbar-dropdown is-boxed">
@@ -86,6 +93,7 @@
                         </a>
                     </div>
                 </div>
+            -->
 
             </div>
 

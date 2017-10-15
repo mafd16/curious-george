@@ -110,7 +110,7 @@ return [
                 return $obj;
             }
         ],
-        "rem" => [
+        /*"rem" => [
             "shared" => true,
             "callback" => function () {
                 $rem = new \Anax\RemServer\RemServer();
@@ -120,15 +120,15 @@ return [
                 //$rem->init();
                 return $rem;
             }
-        ],
-        "remController" => [
+        ],*/
+        /*"remController" => [
             "shared" => false,
             "callback" => function () {
                 $rem = new \Anax\RemServer\RemServerController();
                 $rem->setDI($this);
                 return $rem;
             }
-        ],
+        ],*/
         "com" => [
             "shared" => true,
             "callback" => function () {
@@ -170,18 +170,66 @@ return [
                 return $obj;
             }
         ],
-        "bookController" => [
+        /*"bookController" => [
             "shared" => true,
             "callback" => function () {
                 $obj = new \Anax\Book\BookController();
                 $obj->setDI($this);
                 return $obj;
             }
-        ],
+        ],*/
         "pagesController" => [
             "shared" => true,
             "callback" => function () {
                 $obj = new \Mafd16\Pages\PagesController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "answerModel" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\AnswerModel();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "answerController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\AnswerController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "questionModel" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\QuestionModel();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "questionController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\QuestionController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "tagModel" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\TagModel();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "tagController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Mafd16\Comment\TagController();
                 $obj->setDI($this);
                 return $obj;
             }

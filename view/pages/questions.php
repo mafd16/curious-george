@@ -10,8 +10,15 @@
         <p class="subtitle">
             Here you will find the questions!
         </p>
-        <br>
+
         <div class="container">
+            <a class="button is-primary" href="<?= $di->url->create("questions/ask") ?>">
+                Ask a question
+            </a>
+
+            <br>
+            <br>
+            
             <p>Questions</p>
             <p>This is <?= $q1 ?>.</p>
             <p>This is <?= $q2 ?>.</p>

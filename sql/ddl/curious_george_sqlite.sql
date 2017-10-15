@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Questions;
 CREATE TABLE Questions (
     "id" INTEGER PRIMARY KEY NOT NULL,
     "userId" INTEGER,
+    "title" TEXT NOT NULL,
     "question" TEXT NOT NULL,
     "tag1Id" INTEGER,
     "tag2Id" INTEGER,

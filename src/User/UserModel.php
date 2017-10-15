@@ -138,7 +138,10 @@ class UserModel implements
         // Get the user
         $user->find("id", $id);
         // Update $user:
-        $user->email = $update->email;
+        //$user->email = $update->email;
+        if (isset($update->acronym)) {
+            $user->acronym = $update->acronym;
+        }
         if (isset($update->password)) {
             $user->setPassword($update->password);
         }

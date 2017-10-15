@@ -76,7 +76,7 @@ class UserController implements
      */
     public function getLogin()
     {
-        $title      = "A login page";
+        $title      = "User login page";
         $data = [
             "message" => "",
         ];
@@ -96,7 +96,7 @@ class UserController implements
      */
     public function getCreateUser($message = null)
     {
-        $title      = "A create user page";
+        $title      = "User sign up page";
         $data = [
             "message" => $message,
         ];
@@ -156,7 +156,7 @@ class UserController implements
      */
     public function getUserProfile()
     {
-        $title      = "A profile page";
+        $title      = "User profile page";
         // Get user from db
         $id = $this->session->get("my_user_id");
         $user = $this->di->get("user")->getUserFromDatabase("id", $id);
@@ -182,9 +182,10 @@ class UserController implements
     {
         // Get POST-variables
         $acronym = $this->request->getPost("name");
+        $email = $this->request->getPost("email");
         $password = $this->request->getPost("password");
         // Get the user from DB
-        $user = $this->di->get("user")->getUserFromDatabase("acronym", $acronym);
+        $user = $this->di->get("user")->getUserFromDatabase("email", $email);
 
         if ($user->deleted) {
             $title = "A login page";
@@ -228,7 +229,7 @@ class UserController implements
      */
     public function updateGetUserProfile($message = null)
     {
-        $title      = "Update user";
+        $title      = "Update user profile";
         // Get user from db
         $id = $this->session->get("my_user_id");
         $user = $this->di->get("user")->getUserFromDatabase("id", $id);
@@ -253,7 +254,8 @@ class UserController implements
     public function updatePostUserProfile()
     {
         // Get POST-variables
-        $email = $this->request->getPost("email");
+        //$email = $this->request->getPost("email");
+        $name = $this->request->getPost("name");
         $password = $this->request->getPost("password");
         $passwordagain = $this->request->getPost("passwordagain");
 
@@ -267,6 +269,7 @@ class UserController implements
         $update = (object) [
             "password" => $password,
             "email" => $email,
+            "acronym" => $name,
         ];
         $user = $this->di->get("user")->updateUserInDatabase($id, $update);
         $this->di->get("user")->saveToSession($user);

@@ -49,84 +49,48 @@
 
                 <!--
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href=<?= $app->url->create("report"); ?>>
+                    <a class="navbar-link" href=>
                         Rapporter
                     </a>
                     <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom01"); ?>>
+                        <a class="navbar-item " href=>
                             kmom01
                         </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom02"); ?>>
+                        <a class="navbar-item " href=>
                             kmom02
                         </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom03"); ?>>
-                            kmom03
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom04"); ?>>
-                            kmom04
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom05"); ?>>
-                            kmom05
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom06"); ?>>
-                            kmom06
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("report#kmom10"); ?>>
-                            kmom10
-                        </a>
+
                         <!--<hr class="navbar-divider">-->
                     <!--</div>
                 </div>-->
-
-                <!--
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link"> Uppgifter </div>
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item " href=<?= $app->url->create("remserver"); ?>>
-                            Remserver
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("comment"); ?>>
-                            Kommentarssystem
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("book"); ?>>
-                            Books
-                        </a>
-                    </div>
-                </div>
-            -->
 
             </div>
 
             <div class="navbar-end">
             <?php if (!$di->get("session")->has("my_user_id")) : ?>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link"> Profil </div>
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item " href=<?= $app->url->create("user/login"); ?>>
-                            Logga in
-                        </a>
-                        <a class="navbar-item " href=<?= $app->url->create("user/create"); ?>>
-                            Skapa konto
-                        </a>
-                    </div>
-                </div>
+                <a class="navbar-item " href=<?= $di->url->create("user/login"); ?>>
+                    Log in
+                </a>
+                <a class="navbar-item " href=<?= $di->url->create("user/create"); ?>>
+                    Sign up
+                </a>
             <?php else : ?>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link"> Profil </div>
+                    <div class="navbar-link"> <?= $di->session->get("my_user_name") ?> </div>
                     <div class="navbar-dropdown is-boxed">
                         <a class="navbar-item " href=<?= $app->url->create("user/profile"); ?>>
-                            Profilsida
+                            Profile page
                         </a>
                         <a class="navbar-item " href=<?= $app->url->create("user/update"); ?>>
-                            Uppdatera konto
+                            Update profile
                         </a>
                         <?php if ($di->get("session")->get("my_user_admin")) : ?>
                             <a class="navbar-item " href=<?= $app->url->create("user/admin"); ?>>
-                                Hantera användare
+                                Handle users
                             </a>
                         <?php endif ?>
                         <a class="navbar-item " href=<?= $app->url->create("user/logout"); ?>>
-                            Logga ut
+                            Log out
                         </a>
                     </div>
                 </div>

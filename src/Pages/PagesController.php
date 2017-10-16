@@ -61,18 +61,15 @@ class PagesController implements
         $title      = "Questions";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
-        //$book = new Book();
-        //$book->setDb($this->di->get("db"));
+
+        // Get all the questions
+        $questions = $this->di->get("questionModel")->getQuestions();
 
         $data = [
-            //"items" => $book->findAll(),
-            "q1" => "A question 1",
-            "q2" => "A question 2",
+            "questions" => $questions,
         ];
 
         $view->add("pages/questions", $data);
-        //$view->add("blocks/footer", $data);
-
         $pageRender->renderPage(["title" => $title]);
     }
 

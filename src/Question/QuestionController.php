@@ -79,6 +79,37 @@ class QuestionController implements InjectionAwareInterface
 
 
     /**
+     * Show one question.
+     *
+     * @param int $id The id of the question
+     *
+     * @return void
+     */
+    public function showQuestion($id)
+    {
+        $title      = "Show question";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        // Get the question
+        $question = $this->di->get("questionModel")->getQuestion("id", $id);
+
+        // Get the answers
+        $answers = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
+
+        $data = [
+            "question" => $question,
+            "answers" => $answers,
+        ];
+
+        $view->add("pages/questions/show", $data);
+        //$view->add("blocks/footer", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    /**
      * Get ALL comments from an article.
      * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *

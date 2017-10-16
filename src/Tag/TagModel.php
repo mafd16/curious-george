@@ -87,6 +87,24 @@ class TagModel implements
 
 
     /**
+     * Get tag name
+     *
+     * @param int       $id The tag id
+     *
+     * @return string   $tagName The tag name
+     */
+    public function getTagName($id)
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // Look for tag
+        $tag->find("id", $id);
+        return $tag->tag;
+    }
+
+
+    /**
      * Save tag
      *
      * @param string    $tagToSave The tag

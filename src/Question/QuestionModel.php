@@ -47,6 +47,42 @@ class QuestionModel implements
 
 
     /**
+     * Get ALL questions from db
+     *
+     * @return object with the dataset
+     */
+    public function getQuestions()
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Get questions from db
+        $questions = $que->findAll();
+
+        return $questions;
+    }
+
+
+    /**
+     * Get ONE question from db
+     *
+     * @param string $key   The key of the question
+     * @param mixed  $value The value of the key
+     *
+     * @return object with the question
+     */
+    public function getQuestion($key, $value)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Get question from db
+        $question = $que->find($key, $value);
+        return $question;
+    }
+
+
+    /**
      * Save a question to a dataset.
      *
      * @param object    $question Object with values from asked question

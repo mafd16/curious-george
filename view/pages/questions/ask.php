@@ -42,7 +42,7 @@ $tags = isset($tags) ? $tags : ["php", "javascript", "html", "css"];
                 </div>
             </div>
         <?php else : ?>
-            <p>You need to be logged in to post comments!</p>
+            <p>You need to be logged in to ask questions!</p>
         <?php endif ?>
 
     </div>

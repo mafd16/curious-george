@@ -46,11 +46,57 @@ class AnswerModel implements
     //}
 
 
+    /**
+     * Save an answer to db
+     *
+     * @param object    $answer Object with values from asked question
+     *                            (questionId, userId, answer)
+     *
+     * @return void
+     */
+    public function saveAnswer($answer)
+    {
+        // Connect to db
+        $ans = new Answers();
+        $ans->setDb($this->di->get("db"));
+
+        // Set values
+        $ans->questionId = $answer->questionId;
+        $ans->userId = $answer->userId;
+        $ans->answer = $answer->answer;
+        $ans->created = date("Y-m-d H:i:s");
+
+        // Save
+        $ans->save();
+    }
+
+
+    /**
+     * Get answers with an restriction
+     *
+     * @param string    $key The key of the answer
+     * @param mixed     $value The value of the key
+     *
+     * @return array    $res Array with answer-objects
+     */
+    public function getAnswersWhere($key, $value)
+    {
+        // Connect to db
+        $ans = new Answers();
+        $ans->setDb($this->di->get("db"));
+        // Find all matching answers
+        $res = $ans->findAllWhere("$key = ?", $value);
+        return $res;
+    }
+
+
+
 
 
 
     /**
      * Get ALL comments from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for data subset.
      *
@@ -70,6 +116,7 @@ class AnswerModel implements
 
     /**
      * Get ONE comment from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for dataset.
      * @param int    $id for comment.
@@ -94,6 +141,7 @@ class AnswerModel implements
 
     /**
      * Add a comment to a dataset.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param array     $post   variables from posted comment
      *                          (article, name, email, comment)
@@ -117,6 +165,7 @@ class AnswerModel implements
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -139,6 +188,7 @@ class AnswerModel implements
 
     /**
      * Delete comment with key and id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int    $id            to delete
      *

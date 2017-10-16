@@ -16,5 +16,17 @@
              "path" => "add",
              "callable" => ["questionController", "saveQuestion"]
          ],
+         [
+             "info" => "Show one question",
+             "requestMethod" => "get",
+             "path" => "{id:digit}",
+             "callable" => ["questionController", "showQuestion"]
+         ],
+         [
+             "info" => "Route post for saving answer",
+             "requestMethod" => "post",
+             "path" => "answer",
+             "callable" => ["answerController", "saveAnswer"]
+         ],
      ]
  ];

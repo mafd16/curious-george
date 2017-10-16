@@ -23,6 +23,11 @@ return [
         ],
         [
             // For the comment system
+            "mount" => "questions",
+            "file" => __DIR__ . "/route2/question.php",
+        ],
+        [
+            // For the comment system
             "mount" => null,
             "file" => __DIR__ . "/route2/comment.php",
         ],

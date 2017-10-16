@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Answer;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;

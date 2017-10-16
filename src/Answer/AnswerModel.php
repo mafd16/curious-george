@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Answer;
 
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;

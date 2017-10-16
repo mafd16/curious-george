@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Tag;
 
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
@@ -46,11 +46,68 @@ class TagModel implements
     //}
 
 
+    /**
+     * Check if tag exists
+     *
+     * @param string    $tagToCheck The tag
+     *
+     * @return boolean  true or false
+     */
+    public function doTagExist($tagToCheck)
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // Look for tag
+        $tag->find("tag", $tagToCheck);
+        if ($tag->tag) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+
+    /**
+     * Get tag id
+     *
+     * @param string    $tagToCheck The tag
+     *
+     * @return int      tag id
+     */
+    public function getTagId($tagToCheck)
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // Look for tag
+        $tag->find("tag", $tagToCheck);
+        return $tag->id;
+    }
+
+
+    /**
+     * Save tag
+     *
+     * @param string    $tagToSave The tag
+     *
+     * @return int      tag id
+     */
+    public function saveTag($tagToSave)
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // save tag
+        $tag->tag = $tagToSave;
+        $tag->save();
+        return $tag->id;
+    }
 
 
     /**
      * Get ALL comments from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for data subset.
      *
@@ -70,6 +127,7 @@ class TagModel implements
 
     /**
      * Get ONE comment from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for dataset.
      * @param int    $id for comment.
@@ -94,6 +152,7 @@ class TagModel implements
 
     /**
      * Add a comment to a dataset.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param array     $post   variables from posted comment
      *                          (article, name, email, comment)
@@ -117,6 +176,7 @@ class TagModel implements
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -139,6 +199,7 @@ class TagModel implements
 
     /**
      * Delete comment with key and id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int    $id            to delete
      *

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Question;
 
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
@@ -46,11 +46,37 @@ class QuestionModel implements
     //}
 
 
+    /**
+     * Save a question to a dataset.
+     *
+     * @param object    $question Object with values from asked question
+     *                            (userId, title, question)
+     *
+     * @return void
+     */
+    public function saveQuestion($question)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
 
+        // Set values
+        $que->userId = $question->userId;
+        $que->title = $question->title;
+        $que->question = $question->question;
+        $que->tag1Id = $question->tag1Id;
+        $que->tag2Id = $question->tag2Id;
+        $que->tag3Id = $question->tag3Id;
+        $que->created = date("Y-m-d H:i:s");
+
+        // Save
+        $que->save();
+    }
 
 
     /**
      * Get ALL comments from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for data subset.
      *
@@ -70,6 +96,7 @@ class QuestionModel implements
 
     /**
      * Get ONE comment from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for dataset.
      * @param int    $id for comment.
@@ -94,6 +121,7 @@ class QuestionModel implements
 
     /**
      * Add a comment to a dataset.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param array     $post   variables from posted comment
      *                          (article, name, email, comment)
@@ -117,6 +145,7 @@ class QuestionModel implements
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -139,6 +168,7 @@ class QuestionModel implements
 
     /**
      * Delete comment with key and id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int    $id            to delete
      *

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Tag;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
@@ -17,7 +17,39 @@ class TagController implements InjectionAwareInterface
 
 
     /**
+     * Save tags and return tags id. 
+     *
+     * @param array  $tags Array with three tags, (or null-tags)
+     *
+     * @return array $tagId Array with id
+     */
+    public function saveTagsAndGetTagId($tags)
+    {
+        $tagId = [];
+        foreach ($tags as $tag) {
+            // Save new or existing tags and get tag-id:
+            if ($tag) {
+                // Do tag already exist?
+                $doTagExist = $this->di->get("tagModel")->doTagExist($tag);
+                // If so, get tag id
+                if ($doTagExist) {
+                    $idForTag = $this->di->get("tagModel")->getTagId($tag);
+                } else {
+                    // Else, save tag and get tag id
+                    $idForTag = $this->di->get("tagModel")->saveTag($tag);
+                }
+                $tagId[] = $idForTag;
+            } else {
+                $tagId[] = null;
+            }
+        }
+        return $tagId;
+    }
+
+
+    /**
      * Get ALL comments from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -35,6 +67,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Get ONE comment from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for the article
      * @param int    $id for the comment id
@@ -50,6 +83,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Get ONE comment for editing.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -69,6 +103,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Edit a comment.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -95,6 +130,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Post a comment, with name and email.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -112,6 +148,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -126,6 +163,7 @@ class TagController implements InjectionAwareInterface
 
     /**
      * Delete comment with id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */

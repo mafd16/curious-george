@@ -110,25 +110,6 @@ return [
                 return $obj;
             }
         ],
-        /*"rem" => [
-            "shared" => true,
-            "callback" => function () {
-                $rem = new \Anax\RemServer\RemServer();
-                $rem->injectSession($this->get("session"));
-                // Load default values (and init rem server)
-                $rem->configure("remserver.php");
-                //$rem->init();
-                return $rem;
-            }
-        ],*/
-        /*"remController" => [
-            "shared" => false,
-            "callback" => function () {
-                $rem = new \Anax\RemServer\RemServerController();
-                $rem->setDI($this);
-                return $rem;
-            }
-        ],*/
         "com" => [
             "shared" => true,
             "callback" => function () {
@@ -170,14 +151,6 @@ return [
                 return $obj;
             }
         ],
-        /*"bookController" => [
-            "shared" => true,
-            "callback" => function () {
-                $obj = new \Anax\Book\BookController();
-                $obj->setDI($this);
-                return $obj;
-            }
-        ],*/
         "pagesController" => [
             "shared" => true,
             "callback" => function () {
@@ -189,7 +162,7 @@ return [
         "answerModel" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\AnswerModel();
+                $obj = new \Mafd16\Answer\AnswerModel();
                 $obj->setDI($this);
                 return $obj;
             }
@@ -197,7 +170,7 @@ return [
         "answerController" => [
             "shared" => false,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\AnswerController();
+                $obj = new \Mafd16\Answer\AnswerController();
                 $obj->setDI($this);
                 return $obj;
             }
@@ -205,7 +178,7 @@ return [
         "questionModel" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\QuestionModel();
+                $obj = new \Mafd16\Question\QuestionModel();
                 $obj->setDI($this);
                 return $obj;
             }
@@ -213,7 +186,7 @@ return [
         "questionController" => [
             "shared" => false,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\QuestionController();
+                $obj = new \Mafd16\Question\QuestionController();
                 $obj->setDI($this);
                 return $obj;
             }
@@ -221,7 +194,7 @@ return [
         "tagModel" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\TagModel();
+                $obj = new \Mafd16\Tag\TagModel();
                 $obj->setDI($this);
                 return $obj;
             }
@@ -229,7 +202,7 @@ return [
         "tagController" => [
             "shared" => false,
             "callback" => function () {
-                $obj = new \Mafd16\Comment\TagController();
+                $obj = new \Mafd16\Tag\TagController();
                 $obj->setDI($this);
                 return $obj;
             }

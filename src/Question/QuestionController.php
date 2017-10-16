@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Question;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
@@ -17,7 +17,70 @@ class QuestionController implements InjectionAwareInterface
 
 
     /**
+     * Show the ask question page.
+     *
+     * @return void
+     */
+    public function askQuestion()
+    {
+        $title      = "Ask a question";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $data = [
+            //"items" => $book->findAll(),
+            //"tags" => $this->di->get("tagModel")->getAllTags(),
+            "q1" => "A question 1",
+            "q2" => "A question 2",
+        ];
+
+        $view->add("pages/questions/ask", $data);
+        //$view->add("blocks/footer", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    /**
+     * Save the asked question.
+     *
+     * @return void
+     */
+    public function saveQuestion()
+    {
+        // Get post-variables
+        $post = $this->di->get("request")->getPost();
+
+        // Save new or existing tags and get tag-id:
+        $tags = [
+            isset($post["tag1"]) ? $post["tag1"] : null,
+            isset($post["tag2"]) ? $post["tag2"] : null,
+            isset($post["tag3"]) ? $post["tag3"] : null,
+        ];
+        $tagId = $this->di->get("tagController")->saveTagsAndGetTagId($tags);
+
+        // Create question object
+        $question = (object) [
+            "userId" => $post["userId"],
+            "title" => $post["title"],
+            "question" => $post["question"],
+            "tag1Id" => $tagId[0],
+            "tag2Id" => $tagId[1],
+            "tag3Id" => $tagId[2],
+        ];
+
+        // Instruct Model to save question:
+        $this->di->get("questionModel")->saveQuestion($question);
+
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions");
+        $this->di->get("response")->redirect($url);
+    }
+
+
+    /**
      * Get ALL comments from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -35,6 +98,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Get ONE comment from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for the article
      * @param int    $id for the comment id
@@ -50,6 +114,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Get ONE comment for editing.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -69,6 +134,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Edit a comment.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -95,6 +161,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Post a comment, with name and email.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -112,6 +179,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -126,6 +194,7 @@ class QuestionController implements InjectionAwareInterface
 
     /**
      * Delete comment with id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */

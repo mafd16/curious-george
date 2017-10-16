@@ -1,6 +1,6 @@
 <?php
 
-namespace Mafd16\Comment;
+namespace Mafd16\Question;
 
 use \Anax\Database\ActiveRecordModel;
 
@@ -22,6 +22,7 @@ class Questions extends ActiveRecordModel
      */
     public $id;
     public $userId;
+    public $title;
     public $question;
     public $tag1Id;
     public $tag2Id;

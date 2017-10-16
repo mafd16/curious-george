@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS Questions;
 CREATE TABLE Questions (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "userId" INTEGER,
+    "userId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "question" TEXT NOT NULL,
     "tag1Id" INTEGER,
@@ -23,8 +23,8 @@ CREATE TABLE Questions (
 DROP TABLE IF EXISTS Answers;
 CREATE TABLE Answers (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "questionId" INTEGER,
-    "userId" INTEGER,
+    "questionId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
     "answer" TEXT NOT NULL,
     "accepted", INTEGER,
     "created" TIMESTAMP,
@@ -42,7 +42,7 @@ CREATE TABLE Comments (
     "id" INTEGER PRIMARY KEY NOT NULL,
     "questionId" INTEGER,
     "answerID" INTEGER,
-    "userId" INTEGER,
+    "userId" INTEGER NOT NULL,
     "comment" TEXT NOT NULL,
     "created" TIMESTAMP,
     "updated" DATETIME,
@@ -75,5 +75,6 @@ CREATE TABLE User (
 DROP TABLE IF EXISTS Tags;
 CREATE TABLE Tags (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "tag" TEXT UNIQUE NOT NULL
+    "tag" TEXT UNIQUE NOT NULL,
+    "rank" INTEGER
 );

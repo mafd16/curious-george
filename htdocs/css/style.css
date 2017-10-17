@@ -1,11 +1,6 @@
 
 
 
-
-
-
-
-/* For table in raoute book */
- .bookth {
-     padding: 5px;
- }
+div.hidden {
+    display: none;
+}

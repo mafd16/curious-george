@@ -3,33 +3,8 @@
 // Gather incoming variables and use default values if not set
 $question = isset($question) ? $question : null;
 $answers = isset($answers) ? $answers : null;
+$comments = isset($comments) ? $comments : null;
 
-$comments = [
-    (object) [
-        "questionId" => 3,
-        "answerId" => null,
-        "userId" => 1,
-        "comment" => "comment one mocked",
-    ],
-    (object) [
-        "questionId" => 3,
-        "answerId" => 1,
-        "userId" => 1,
-        "comment" => "comment two mocked",
-    ],
-    (object) [
-        "questionId" => 3,
-        "answerId" => 2,
-        "userId" => 1,
-        "comment" => "comment three mocked",
-    ],
-    (object) [
-        "questionId" => 3,
-        "answerId" => 1,
-        "userId" => 1,
-        "comment" => "comment four mocked",
-    ],
-];
 
 // Count the number of answers to a question
 $noOfAnswers = count($answers);
@@ -73,12 +48,12 @@ if ($noOfAnswers == 1) {
             <!-- End of comments to the question -->
 
             <!-- Post a new comment to the question -->
-            <a id="commentquestion" class="is-size-7">
+            <a class="is-size-7" onclick="togglePostComment()">
                 Comment the question
             </a>
             <br>
             <br>
-            <div id="commentquestionform" class="hidden">
+            <div id="commentquestionform" style="display:none;">
             <?php if ($di->get("session")->has("my_user_id")) : ?>
                 <div class="columns is-mobile">
                     <div class="column is-two-third-tablet is-half-desktop">
@@ -117,10 +92,35 @@ if ($noOfAnswers == 1) {
             <!-- End of comments to the answer -->
 
             <!-- Post a new comment to the answer -->
+            <a class="is-size-7 comment-answer">
+                Comment this answer
+            </a>
+
+            <div style="display:none;">
+                <br>
+            <?php if ($di->get("session")->has("my_user_id")) : ?>
+                <div class="columns is-mobile">
+                    <div class="column is-two-third-tablet is-half-desktop">
+                        <form action=<?= $di->get("url")->create("questions/comment"); ?> method="post">
+                            <input class="input" type="hidden" name="questionId" value=<?= $question->id ?>>
+                            <input class="input" type="hidden" name="answerId" value=<?= $answer->id ?>>
+                            <input class="input" type="hidden" name="userId" value=<?= $di->get("session")->get("my_user_id") ?>>
+                            Comment: <textarea class="textarea" name="comment" required></textarea><br>
+                            <input type="submit" value="Post comment" class="button is-primary">
+                        </form>
+                    </div>
+                </div>
+            <?php else : ?>
+                <p>You need to be logged in to comment!</p>
+            <?php endif ?>
+            </div>
             <!-- End of Post a new comment to the answer -->
 
             <hr>
             <?php endforeach ?>
+            <!-- End of Answers to the question -->
+
+
 
             <!-- Post a new answer -->
             <p class="is-size-4">

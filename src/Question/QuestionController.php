@@ -97,9 +97,13 @@ class QuestionController implements InjectionAwareInterface
         // Get the answers
         $answers = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
 
+        // Get the comments
+        $comments = $this->di->get("com")->getCommentsWhere("questionId", $question->id);
+
         $data = [
             "question" => $question,
             "answers" => $answers,
+            "comments" => $comments,
         ];
 
         $view->add("pages/questions/show", $data);

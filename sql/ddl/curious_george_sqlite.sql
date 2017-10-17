@@ -26,7 +26,7 @@ CREATE TABLE Answers (
     "questionId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "answer" TEXT NOT NULL,
-    "accepted", INTEGER,
+    "accepted" INTEGER,
     "created" TIMESTAMP,
     "updated" DATETIME,
     "deleted" DATETIME,
@@ -40,8 +40,8 @@ CREATE TABLE Answers (
 DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "questionId" INTEGER,
-    "answerID" INTEGER,
+    "questionId" INTEGER NOT NULL,
+    "answerId" INTEGER,
     "userId" INTEGER NOT NULL,
     "comment" TEXT NOT NULL,
     "created" TIMESTAMP,

@@ -46,11 +46,59 @@ class CommentModel implements
     //}
 
 
+    /**
+     * Save an comment to db
+     *
+     * @param object    $comment Object with values from posted comment
+     *                            (questionId, answerId, userId, comment)
+     *
+     * @return void
+     */
+    public function saveComment($comment)
+    {
+        // Connect to db
+        $com = new Comments();
+        $com->setDb($this->di->get("db"));
+        // Set values
+        $com->questionId = $comment->questionId;
+        $com->answerId = $comment->answerId;
+        $com->userId = $comment->userId;
+        $com->comment = $comment->comment;
+        $com->created = date("Y-m-d H:i:s");
+        // Save
+        $com->save();
+    }
+
+
+    /**
+     * Get comments with an restriction
+     *
+     * @param string    $key The key of the comment
+     * @param mixed     $value The value of the key
+     *
+     * @return array    $res Array with comment-objects
+     */
+    public function getCommentsWhere($key, $value)
+    {
+        // Connect to db
+        $comments = new Comments();
+        $comments->setDb($this->di->get("db"));
+        // Find all matching comments
+        $res = $comments->findAllWhere("$key = ?", $value);
+        return $res;
+    }
+
+
+
+
+
+
 
 
 
     /**
      * Get ALL comments from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for data subset.
      *
@@ -70,6 +118,7 @@ class CommentModel implements
 
     /**
      * Get ONE comment from session
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for dataset.
      * @param int    $id for comment.
@@ -94,6 +143,7 @@ class CommentModel implements
 
     /**
      * Add a comment to a dataset.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param array     $post   variables from posted comment
      *                          (article, name, email, comment)
@@ -117,6 +167,7 @@ class CommentModel implements
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -139,6 +190,7 @@ class CommentModel implements
 
     /**
      * Delete comment with key and id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int    $id            to delete
      *

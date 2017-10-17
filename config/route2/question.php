@@ -28,5 +28,11 @@
              "path" => "answer",
              "callable" => ["answerController", "saveAnswer"]
          ],
+         [
+             "info" => "Route post for saving comment",
+             "requestMethod" => "post",
+             "path" => "comment",
+             "callable" => ["comController", "saveComment"]
+         ],
      ]
  ];

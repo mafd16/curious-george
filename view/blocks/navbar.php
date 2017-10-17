@@ -10,6 +10,8 @@
 
 <body>
     <script src="<?= $di->url->create("js/navbar.js") ?>"></script>
+    <script src="<?= $di->url->create("js/curious_george.js") ?>"></script>
+
     <!--<script src="js/navbar.js"></script>-->
 
     <div class="container">

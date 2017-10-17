@@ -17,7 +17,37 @@ class CommentController implements InjectionAwareInterface
 
 
     /**
+     * Save the comment.
+     *
+     * @return void
+     */
+    public function saveComment()
+    {
+        // Get post-variables
+        $post = $this->di->get("request")->getPost();
+        // Create comment object
+        $comment = (object) [
+            "questionId" => $post["questionId"],
+            "answerId" => isset($post["answerId"]) ? $post["answerId"] : null,
+            "userId" => $post["userId"],
+            "comment" => $post["comment"],
+        ];
+        // Instruct Model to save comment:
+        $this->di->get("com")->saveComment($comment);
+        // Redirect back to the question page:
+        $url = $this->di->get("url")->create("questions/$post[questionId]");
+        $this->di->get("response")->redirect($url);
+    }
+
+
+
+
+
+
+
+    /**
      * Get ALL comments from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -35,6 +65,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Get ONE comment from an article.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param string $key for the article
      * @param int    $id for the comment id
@@ -50,6 +81,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Get ONE comment for editing.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -69,6 +101,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Edit a comment.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -95,6 +128,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Post a comment, with name and email.
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */
@@ -112,6 +146,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Update old comment with new comment
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @param int       $id         id for comment
      * @param array     $comment    the comment-array (name, email, comment, id)
@@ -126,6 +161,7 @@ class CommentController implements InjectionAwareInterface
 
     /**
      * Delete comment with id
+     * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *
      * @return void
      */

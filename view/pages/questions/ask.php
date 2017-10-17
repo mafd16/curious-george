@@ -3,7 +3,7 @@
 // Gather incoming variables and use default values if not set
 //$comments = isset($comments) ? $comments : null;
 //$tags = isset($tags) ? $tags : null;
-$tags = isset($tags) ? $tags : ["php", "javascript", "html", "css"];
+$tags = isset($tags) ? $tags : null;
 
 ?>
 
@@ -32,7 +32,7 @@ $tags = isset($tags) ? $tags : ["php", "javascript", "html", "css"];
 
                         <datalist id="tags">
                         <?php foreach ($tags as $tag): ?>
-                            <option value="<?= $tag ?>">
+                            <option value="<?= $tag->tag ?>">
                         <?php endforeach ?>
 
                         </datalist>

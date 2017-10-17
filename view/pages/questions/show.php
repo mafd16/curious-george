@@ -29,24 +29,46 @@ if ($noOfAnswers == 1) {
         <div class="container">
             <hr>
             <!-- The question itself -->
-            <p>
-                <?= $question->question ?>
-            </p>
+            <?= $question->question ?>
             <br>
+            <br>
+            <!-- Question tags -->
+            <div class="level is-mobile">
+                <div class="level-left">
+                <?php if ($question->tag1Id) : ?>
+                    <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag1Id") ?>">
+                        <span class="tag is-dark">
+                            <?= $this->di->get("tagModel")->getTagName($question->tag1Id) ?>
+                        </span>
+                    </a>
+                <?php endif ?>
+                <?php if ($question->tag2Id) : ?>
+                    <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag2Id") ?>">
+                        <span class="tag is-dark">
+                            <?= $this->di->get("tagModel")->getTagName($question->tag2Id) ?>
+                        </span>
+                    </a>
+                <?php endif ?>
+                <?php if ($question->tag3Id) : ?>
+                    <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag3Id") ?>">
+                        <span class="tag is-dark">
+                            <?= $this->di->get("tagModel")->getTagName($question->tag3Id) ?>
+                        </span>
+                    </a>
+                <?php endif ?>
+                </div>
+            </div>
             <!-- End of question -->
 
             <!-- Comments to the question -->
             <?php foreach ($comments as $comment) : ?>
-            <p>
             <?php if (!$comment->answerId) : ?>
-                <?= $comment->comment ?>
-                <br>
-                <br>
+            <?= $comment->comment ?>
+
             <?php endif ?>
-            </p>
             <?php endforeach ?>
             <!-- End of comments to the question -->
-
+            <br>
             <!-- Post a new comment to the question -->
             <a class="is-size-7" onclick="togglePostComment()">
                 Comment the question

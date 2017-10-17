@@ -83,6 +83,43 @@ class QuestionModel implements
 
 
     /**
+     * Get questions with an restriction
+     *
+     * @param string    $key The key of the question
+     * @param mixed     $value The value of the key
+     *
+     * @return array    $res Array with question-objects
+     */
+    public function getQuestionsWhere($key, $value)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Find all matching questions
+        $res = $que->findAllWhere("$key = ?", $value);
+        return $res;
+    }
+
+
+    /**
+     * Get all questions with a specific tag
+     *
+     * @param int       $tag The id of the tag
+     *
+     * @return array    $res Array with question-objects
+     */
+    public function getQuestionsWithTag($tag)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Find all matching questions
+        $res = $que->findAllWhere("tag1Id = ? OR tag2Id = ? OR tag3Id = ?", [$tag, $tag, $tag]);
+        return $res;
+    }
+
+
+    /**
      * Save a question to a dataset.
      *
      * @param object    $question Object with values from asked question

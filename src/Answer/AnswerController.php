@@ -4,6 +4,7 @@ namespace Mafd16\Answer;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Anax\TextFilter\TextFilter;
 
 /**
  * A controller for the Comment System.
@@ -26,11 +27,15 @@ class AnswerController implements InjectionAwareInterface
         // Get post-variables
         $post = $this->di->get("request")->getPost();
 
+        // Filter text to markdown
+        $filter = new TextFilter();
+        $text = $filter->parse($post["answer"], ["markdown"]);
+
         // Create answer object
         $answer = (object) [
             "questionId" => $post["questionId"],
             "userId" => $post["userId"],
-            "answer" => $post["answer"],
+            "answer" => $text->text,//$post["answer"],
         ];
 
         // Instruct Model to save answer:

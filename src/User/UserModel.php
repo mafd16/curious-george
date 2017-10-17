@@ -123,6 +123,22 @@ class UserModel implements
 
 
     /**
+     * Get ALL users from database
+     *
+     * @return array with the user objects
+     */
+    public function getAllUsers()
+    {
+        // Connect to db
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+        // Get users from db
+        $users = $user->findAll();
+        return $users;
+    }
+
+
+    /**
      * Update a user in the database
      *
      * @param int $id the id of the user

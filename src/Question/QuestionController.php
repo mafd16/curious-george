@@ -4,6 +4,7 @@ namespace Mafd16\Question;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Anax\TextFilter\TextFilter;
 
 /**
  * A controller for the Comment System.
@@ -27,11 +28,13 @@ class QuestionController implements InjectionAwareInterface
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
+        // Get all the tags
+        $tags =  $this->di->get("tagModel")->getAllTags();
+
         $data = [
             //"items" => $book->findAll(),
             //"tags" => $this->di->get("tagModel")->getAllTags(),
-            "q1" => "A question 1",
-            "q2" => "A question 2",
+            "tags" => $tags,
         ];
 
         $view->add("pages/questions/ask", $data);
@@ -59,11 +62,15 @@ class QuestionController implements InjectionAwareInterface
         ];
         $tagId = $this->di->get("tagController")->saveTagsAndGetTagId($tags);
 
+        // Filter text to markdown
+        $filter = new TextFilter();
+        $text = $filter->parse($post["question"], ["markdown"]);
+
         // Create question object
         $question = (object) [
             "userId" => $post["userId"],
             "title" => $post["title"],
-            "question" => $post["question"],
+            "question" => $text->text,//$post["question"],
             "tag1Id" => $tagId[0],
             "tag2Id" => $tagId[1],
             "tag3Id" => $tagId[2],
@@ -111,6 +118,45 @@ class QuestionController implements InjectionAwareInterface
 
         $pageRender->renderPage(["title" => $title]);
     }
+
+
+    /**
+     * Show the questions page filtered by tag.
+     *
+     * @param int   $tag The id of the tag.
+     *
+     * @return void
+     */
+    public function getQuestionsWithTag($tag)
+    {
+        $title      = "Questions";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        // Get all the questions
+        $questions = $this->di->get("questionModel")->getQuestionsWithTag($tag);
+
+        // Get the tag name
+        $tagName = $this->di->get("tagModel")->getTagName($tag);
+
+        // Change the subtitle
+        $subtitle   = "Here you will find all the questions tagged <span class='tag is-dark'>$tagName</span>!";
+
+        $data = [
+            "questions" => $questions,
+            "subtitle" => $subtitle,
+        ];
+
+        $view->add("pages/questions", $data);
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+
+
+
+
+
 
 
     /**

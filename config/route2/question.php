@@ -34,5 +34,11 @@
              "path" => "comment",
              "callable" => ["comController", "saveComment"]
          ],
+         [
+             "info" => "The questions page with a tag filter.",
+             "requestMethod" => "get",
+             "path" => "tagged/{tag:digit}",
+             "callable" => ["questionController", "getQuestionsWithTag"],
+         ],
      ]
  ];

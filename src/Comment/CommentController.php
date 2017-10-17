@@ -4,6 +4,7 @@ namespace Mafd16\Comment;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Anax\TextFilter\TextFilter;
 
 /**
  * A controller for the Comment System.
@@ -25,12 +26,15 @@ class CommentController implements InjectionAwareInterface
     {
         // Get post-variables
         $post = $this->di->get("request")->getPost();
+        // Filter text to markdown
+        $filter = new TextFilter();
+        $text = $filter->parse($post["comment"], ["markdown"]);
         // Create comment object
         $comment = (object) [
             "questionId" => $post["questionId"],
             "answerId" => isset($post["answerId"]) ? $post["answerId"] : null,
             "userId" => $post["userId"],
-            "comment" => $post["comment"],
+            "comment" => $text->text,//$post["comment"],
         ];
         // Instruct Model to save comment:
         $this->di->get("com")->saveComment($comment);

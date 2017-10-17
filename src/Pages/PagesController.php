@@ -59,6 +59,7 @@ class PagesController implements
     public function getQuestions()
     {
         $title      = "Questions";
+        $subtitle   = "Here you will find all the questions!";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
@@ -67,6 +68,7 @@ class PagesController implements
 
         $data = [
             "questions" => $questions,
+            "subtitle" => $subtitle,
         ];
 
         $view->add("pages/questions", $data);
@@ -84,13 +86,12 @@ class PagesController implements
         $title      = "Tags";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
-        //$book = new Book();
-        //$book->setDb($this->di->get("db"));
+        // Get all the tags from db
+        $tags = $this->di->get("tagModel")->getAllTags();
 
         $data = [
             //"items" => $book->findAll(),
-            "t1" => "A tag no 1",
-            "t2" => "A tag no 2",
+            "tags" => $tags,
         ];
 
         $view->add("pages/tags", $data);
@@ -110,13 +111,13 @@ class PagesController implements
         $title      = "Users";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
-        //$book = new Book();
-        //$book->setDb($this->di->get("db"));
+
+        // Get all the users from db
+        $users = $this->di->get("user")->getAllUsers();
 
         $data = [
             //"items" => $book->findAll(),
-            "u1" => "user no 1",
-            "u2" => "user no 2",
+            "users" => $users,
         ];
 
         $view->add("pages/users", $data);

@@ -124,6 +124,24 @@ class TagModel implements
 
 
     /**
+     * Get ALL tags from db
+     *
+     * @return array with the tag objects
+     */
+    public function getAllTags()
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // Get tags from db
+        $tags = $tag->findAll();
+        return $tags;
+    }
+
+
+
+
+    /**
      * Get ALL comments from session
      * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *

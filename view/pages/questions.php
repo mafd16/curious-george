@@ -11,7 +11,8 @@ $questions = isset($questions) ? $questions : null;
             Questions page
         </h1>
         <p class="subtitle">
-            Here you will find the questions!
+            <?= $subtitle ?>
+            <!--Here you will find the questions!-->
         </p>
 
         <div class="container">
@@ -55,18 +56,24 @@ $questions = isset($questions) ? $questions : null;
                     <nav class="level is-mobile">
                         <div class="level-left">
                             <?php if ($question->tag1Id) : ?>
-                                <a class="level-item" href="test">
-                                    <?= $this->di->get("tagModel")->getTagName($question->tag1Id) ?>
+                                <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag1Id") ?>">
+                                    <span class="tag is-dark">
+                                        <?= $this->di->get("tagModel")->getTagName($question->tag1Id) ?>
+                                    </span>
                                 </a>
                             <?php endif ?>
                             <?php if ($question->tag2Id) : ?>
-                                <a class="level-item" href="tesst">
-                                    <?= $this->di->get("tagModel")->getTagName($question->tag2Id) ?>
+                                <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag2Id") ?>">
+                                    <span class="tag is-dark">
+                                        <?= $this->di->get("tagModel")->getTagName($question->tag2Id) ?>
+                                    </span>
                                 </a>
                             <?php endif ?>
                             <?php if ($question->tag3Id) : ?>
-                                <a class="level-item" href="tesst">
-                                    <?= $this->di->get("tagModel")->getTagName($question->tag3Id) ?>
+                                <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$question->tag3Id") ?>">
+                                    <span class="tag is-dark">
+                                        <?= $this->di->get("tagModel")->getTagName($question->tag3Id) ?>
+                                    </span>
                                 </a>
                             <?php endif ?>
                         </div>

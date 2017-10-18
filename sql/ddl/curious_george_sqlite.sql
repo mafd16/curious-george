@@ -65,7 +65,11 @@ CREATE TABLE User (
     "deleted" DATETIME,
     "active" DATETIME,
     "admin" INTEGER,
-    "entries" INTEGER
+    "entries" INTEGER,
+    "city" TEXT,
+    "country" TEXT,
+    "slogan" TEXT,
+    "birth" DATETIME
 );
 
 

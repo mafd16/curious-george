@@ -165,6 +165,18 @@ class UserModel implements
         if (isset($update->admin)) {
             $user->admin = $update->admin;
         }
+        if (isset($update->slogan)) {
+            $user->slogan = $update->slogan;
+        }
+        if (isset($update->birth)) {
+            $user->birth = $update->birth;
+        }
+        if (isset($update->city)) {
+            $user->city = $update->city;
+        }
+        if (isset($update->country)) {
+            $user->country = $update->country;
+        }
         // Save to database
         $user->save();
         return $user;

@@ -6,6 +6,7 @@ use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use DateTime;
 
 /**
  * A controller class for the main pages.
@@ -123,6 +124,55 @@ class PagesController implements
         $view->add("pages/users", $data);
         //$view->add("blocks/footer", $data);
 
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    /**
+     * Show a users public page.
+     *
+     * @param int   $id The users id
+     *
+     * @return void
+     */
+    public function getUserPublic($id)
+    {
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+        // Get the user from db
+        $user = $this->di->get("user")->getUserFromDatabase("id", $id);
+        // Get the users questions
+        $askedQuestions = $this->di->get("questionModel")->getQuestionsWhere("userId", $user->id);
+        // Get the users answers
+        $answers = $this->di->get("answerModel")->getAnswersWhere("userId", $user->id);
+        // Get questions answered by user
+        $answeredQuestions = $this->di->get("questionModel")->getQuestionsAnsweredByUser($answers);
+
+        // Get the users comments
+        $comments = $this->di->get("com")->getCommentsWhere("userId", $user->id);
+        // Construct the title
+        $title = "User $user->acronym";
+        // Calculate age for user
+        $from = new DateTime($user->birth);
+        $to   = new DateTime('today');
+        $age = $from->diff($to)->y;
+        // Collect the user statistics
+        $stats = (object) [
+            "questions" => count($askedQuestions),
+            "answers" => count($answers),
+            "comments" => count($comments),
+        ];
+
+        $data = [
+            "user" => $user,
+            "askedQuestions" => $askedQuestions,
+            "answeredQuestions" => $answeredQuestions,
+            "stats" => $stats,
+            "answers" => $answers,
+            "age" => $age,
+        ];
+
+        $view->add("pages/user", $data);
         $pageRender->renderPage(["title" => $title]);
     }
 }

@@ -258,6 +258,10 @@ class UserController implements
         $name = $this->request->getPost("name");
         $password = $this->request->getPost("password");
         $passwordagain = $this->request->getPost("passwordagain");
+        $slogan = $this->request->getPost("slogan");
+        $birth = $this->request->getPost("birth");
+        $city = $this->request->getPost("city");
+        $country = $this->request->getPost("country");
 
         if ($password !== $passwordagain) {
             $message = "<p>Passwords did not match!</p>";
@@ -268,8 +272,12 @@ class UserController implements
         // Update user
         $update = (object) [
             "password" => $password,
-            "email" => $email,
+            //"email" => $email,
             "acronym" => $name,
+            "slogan" => $slogan,
+            "birth" => $birth,
+            "city" => $city,
+            "country" => $country,
         ];
         $user = $this->di->get("user")->updateUserInDatabase($id, $update);
         $this->di->get("user")->saveToSession($user);
@@ -355,11 +363,15 @@ class UserController implements
     public function postAdminUpdateUser()
     {
         // Get POST-variables
-        $email = $this->request->getPost("email");
+        //$email = $this->request->getPost("email");
         $password = $this->request->getPost("password");
         $passwordagain = $this->request->getPost("passwordagain");
         $admin = $this->request->getPost("admin");
         $userId = $this->request->getPost("user_id");
+        $slogan = $this->request->getPost("slogan");
+        $birth = $this->request->getPost("birth");
+        $city = $this->request->getPost("city");
+        $country = $this->request->getPost("country");
         if ($password !== $passwordagain) {
             $message = "<p>Passwords did not match!</p>";
             $this->getAdminUpdateUser($message, $userId);
@@ -369,6 +381,10 @@ class UserController implements
             "password" => $password,
             "email" => $email,
             "admin" => $admin,
+            "slogan" => $slogan,
+            "birth" => $birth,
+            "city" => $city,
+            "country" => $country,
         ];
         $this->di->get("user")->updateUserInDatabase($userId, $update);
         // Redirect back to admin page

@@ -19,11 +19,15 @@ namespace Anax\View;
 
 
     <form action=<?= $di->get("url")->create("user/change"); ?> method="post">
-        <!--<input type="hidden" name="article" value="comPage">-->
         Name: <input class="input" type="text" name="name" value="<?= $user->acronym ?>"><br>
         Password: <input class="input" type="password" name="password"><br>
         Repeate password: <input class="input" type="password" name="passwordagain"><br>
-        <!--Kommentar: <input class="textarea" type="text" name="comment"><br>-->
+
+        Slogan: <input class="input" type="text" name="slogan" value="<?= $user->slogan ?>"><br>
+        Birth YYYY-MM-DD: <input class="input" type="text" name="birth" value="<?= $user->birth ?>"><br>
+        City: <input class="input" type="text" name="city" value="<?= $user->city ?>"><br>
+        Country: <input class="input" type="text" name="country" value="<?= $user->country ?>"><br>
+
         <br>
         <input type="submit" value="Update" class="button is-primary">
     </form>

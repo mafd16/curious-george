@@ -38,7 +38,13 @@ $gravatarhash = md5(strtolower(trim($user->email)));
 <br>
 
 <p>Name: <?= $user->acronym; ?> </p>
+<p>Slogan: <?= $user->slogan; ?> </p>
+<p>Birth: <?= $user->birth; ?> </p>
+<p>City: <?= $user->city; ?> </p>
+<p>Country: <?= $user->country; ?> </p>
 <p>Email: <?= $user->email; ?> </p>
+<p>Created: <?= $user->created; ?> </p>
+<p>Updated: <?= $user->updated; ?> </p>
 <p>Admin: <?= $user->admin ? "Yes" : "No"; ?> </p>
 
 <hr>

@@ -28,5 +28,11 @@ return [
             "path" => "users",
             "callable" => ["pagesController", "getUsers"],
         ],
+        [
+            "info" => "A users public page.",
+            "requestMethod" => "get",
+            "path" => "users/{id:digit}",
+            "callable" => ["pagesController", "getUserPublic"],
+        ],
     ]
 ];

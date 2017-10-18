@@ -120,6 +120,25 @@ class QuestionModel implements
 
 
     /**
+     * Get all questions answered by a user. Should work with comments aswell!
+     *
+     * @param array     $answers Array with the answer-objects with userId == $user->id
+     *
+     * @return array    $res Array with question-objects
+     */
+    public function getQuestionsAnsweredByUser($answers)
+    {
+        $AQ = array();
+        foreach ($answers as $answer) {
+            $temp = $this->getQuestion("id", $answer->questionId);
+            $AQ[$temp->id] = $temp;
+        };
+        $res = $AQ;
+        return $res;
+    }
+
+
+    /**
      * Save a question to a dataset.
      *
      * @param object    $question Object with values from asked question

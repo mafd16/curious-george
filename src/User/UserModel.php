@@ -184,6 +184,30 @@ class UserModel implements
 
 
     /**
+     * Add one entry for the user.
+     * An entry is a question, answer or comment made by the user.
+     *
+     * @param int $id the id of the user
+     *
+     * @return void
+     */
+    public function addOneEntry($id)
+    {
+        // Connect to db
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+        // Get the user
+        $user->find("id", $id);
+        // Add one to entry
+        $user->entries += 1;
+        // Save to database
+        $user->save();
+    }
+
+
+
+
+    /**
      * Logout user from session
      *
      * @return void

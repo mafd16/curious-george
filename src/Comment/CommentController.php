@@ -38,6 +38,10 @@ class CommentController implements InjectionAwareInterface
         ];
         // Instruct Model to save comment:
         $this->di->get("com")->saveComment($comment);
+
+        // Instruct userModel to add one entry to user
+        $this->di->get("user")->addOneEntry($post["userId"]);
+
         // Redirect back to the question page:
         $url = $this->di->get("url")->create("questions/$post[questionId]");
         $this->di->get("response")->redirect($url);

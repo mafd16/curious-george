@@ -26,9 +26,14 @@ $tagCount = 0;
             <?php endif ?>
 
                 <a class="level-item" href="<?= $this->di->get("url")->create("questions/tagged/$tag->id") ?>">
-                    <span class="tag is-dark">
-                        <?= $tag->tag ?>
-                    </span>
+                    <div class="tags has-addons">
+                        <span class="tag is-dark">
+                            <?= $tag->tag ?>
+                        </span>
+                        <span class="tag is-light">
+                            <?= $tag->rank ?>
+                        </span>
+                    </div>
                 </a>
             <?php $tagCount += 1; ?>
 

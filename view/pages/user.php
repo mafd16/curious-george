@@ -62,7 +62,7 @@ $gravatarhash = md5(strtolower(trim($user->email)));
         <div class="tile is-ancestor">
             <div class="tile is-12 is-parent">
                 <div class="tile is-4 is-child">
-                    <h1 class=subtitle>Question asked by <?= $user->acronym ?></h1>
+                    <h1 class=subtitle>Questions asked by <?= $user->acronym ?></h1>
                     <hr>
 
                     <?php foreach (array_reverse($askedQuestions) as $question) : ?>
@@ -122,7 +122,7 @@ $gravatarhash = md5(strtolower(trim($user->email)));
                 </div>
 
                 <div class="tile is-4 is-child">
-                    <h1 class=subtitle>Question answered by <?= $user->acronym ?></h1>
+                    <h1 class=subtitle>Questions answered by <?= $user->acronym ?></h1>
                     <hr>
 
                     <?php foreach (array_reverse($answeredQuestions) as $question) : ?>

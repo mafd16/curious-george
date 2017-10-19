@@ -17,7 +17,7 @@ class TagController implements InjectionAwareInterface
 
 
     /**
-     * Save tags and return tags id. 
+     * Save tags and return tags id. Add to quantity.
      *
      * @param array  $tags Array with three tags, (or null-tags)
      *
@@ -27,16 +27,18 @@ class TagController implements InjectionAwareInterface
     {
         $tagId = [];
         foreach ($tags as $tag) {
-            // Save new or existing tags and get tag-id:
+            // Save new tag and/or get tag-id:
             if ($tag) {
                 // Do tag already exist?
                 $doTagExist = $this->di->get("tagModel")->doTagExist($tag);
-                // If so, get tag id
+                // If so, get tag id and add one to quantity (rank)
                 if ($doTagExist) {
                     $idForTag = $this->di->get("tagModel")->getTagId($tag);
+                    $this->di->get("tagModel")->increaseRank($idForTag);
                 } else {
-                    // Else, save tag and get tag id
+                    // Else, save tag and get tag id, and add one to quantity (rank)
                     $idForTag = $this->di->get("tagModel")->saveTag($tag);
+                    $this->di->get("tagModel")->increaseRank($idForTag);
                 }
                 $tagId[] = $idForTag;
             } else {

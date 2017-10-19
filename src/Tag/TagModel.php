@@ -139,6 +139,29 @@ class TagModel implements
     }
 
 
+    /**
+     * Increase the rank (quantity) of the tag
+     *
+     * @param int   $id The tag id
+     *
+     * @return void
+     */
+    public function increaseRank($id)
+    {
+        // Connect to db
+        $tag = new Tags();
+        $tag->setDb($this->di->get("db"));
+        // Look for tag
+        $tag->find("id", $id);
+        if (isset($tag->rank)) {
+            $tag->rank += 1;
+        } else {
+            $tag->rank = 1;
+        }
+        // save tag
+        $tag->save();
+    }
+
 
 
     /**

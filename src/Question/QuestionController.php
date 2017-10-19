@@ -79,6 +79,9 @@ class QuestionController implements InjectionAwareInterface
         // Instruct Model to save question:
         $this->di->get("questionModel")->saveQuestion($question);
 
+        // Instruct userModel to add one entry to user
+        $this->di->get("user")->addOneEntry($post["userId"]);
+
         // Redirect back to the questions page:
         $url = $this->di->get("url")->create("questions");
         $this->di->get("response")->redirect($url);

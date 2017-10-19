@@ -37,16 +37,35 @@ class PagesController implements
         $title      = "Curious George";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
-        //$book = new Book();
-        //$book->setDb($this->di->get("db"));
+
+        // Get the latest questions
+        $ques = $this->di->get("questionModel")->getQuestions();
+        uasort($ques, function ($queA, $queB) {
+            if ($queA->created == $queB->created) {
+                return 0;
+            }
+            return ($queA->created < $queB->created) ? 1 : -1;
+        });
+        $questions = array_slice($ques, 0, 5);
+
+        // Get the most popular tags
+        $tags = $this->di->get("tagModel")->getAllTags();
+        uasort($tags, function ($tagA, $tagB) {
+            if ($tagA->rank == $tagB->rank) {
+                return 0;
+            }
+            return ($tagA->rank < $tagB->rank) ? 1 : -1;
+        });
+        $tags = array_slice($tags, 0, 9);
+
+        // Get the most active users
 
         $data = [
-            //"items" => $book->findAll(),
-            "items" => "an item",
+            "questions" => $questions,
+            "tags" => $tags,
         ];
 
         $view->add("pages/index", $data);
-        //$view->add("blocks/footer", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }

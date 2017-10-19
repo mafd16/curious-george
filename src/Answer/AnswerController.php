@@ -41,6 +41,9 @@ class AnswerController implements InjectionAwareInterface
         // Instruct Model to save answer:
         $this->di->get("answerModel")->saveAnswer($answer);
 
+        // Instruct userModel to add one entry to user
+        $this->di->get("user")->addOneEntry($post["userId"]);
+
         // Redirect back to the question page:
         $url = $this->di->get("url")->create("questions/$post[questionId]");
         $this->di->get("response")->redirect($url);

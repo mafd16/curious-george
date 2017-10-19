@@ -28,7 +28,7 @@ $gravatarhash = md5(strtolower(trim($user->email)));
                         <figure class="media-left">
                             <p class="image is-128x128">
                                 <!--<img src="http://bulma.io/images/placeholders/128x128.png">-->
-                                <img src="https://www.gravatar.com/avatar/<?= $gravatarhash ?>?s=128" />
+                                <img src="https://www.gravatar.com/avatar/<?= $gravatarhash ?>?s=128&d=monsterid" />
                             </p>
                         </figure>
                         <div class="media-content">
@@ -36,6 +36,7 @@ $gravatarhash = md5(strtolower(trim($user->email)));
                                 <strong><?= $user->acronym ?></strong>
                             <!--</div>-->
                             <!--<div class="content">-->
+                                <p class="is-size-7">Slogan: <?= $user->slogan ?></p>
                                 <p class="is-size-7">Location: <?= $user->city ?>, <?= $user->country ?></p>
                                 <p class="is-size-7">Age: <?= $age ?></p>
                                 <!--<p class="is-size-7">Email: <?= $user->email ?></p>-->

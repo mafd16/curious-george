@@ -59,10 +59,19 @@ class PagesController implements
         $tags = array_slice($tags, 0, 9);
 
         // Get the most active users
+        $users = $this->di->get("user")->getAllUsers();
+        uasort($users, function ($userA, $userB) {
+            if ($userA->entries == $userB->entries) {
+                return 0;
+            }
+            return ($userA->entries < $userB->entries) ? 1 : -1;
+        });
+        $users = array_slice($users, 0, 6);
 
         $data = [
             "questions" => $questions,
             "tags" => $tags,
+            "users" => $users,
         ];
 
         $view->add("pages/index", $data);

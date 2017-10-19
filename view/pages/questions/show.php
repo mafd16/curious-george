@@ -31,7 +31,12 @@ if ($noOfAnswers == 1) {
             <!-- The question itself -->
             <?= $question->question ?>
             <br>
-            <br>
+            <p class="is-size-7">Asked by
+            <?php
+            $user = $this->di->get("user")->getUserFromDatabase("id", $question->userId);
+            ?>
+            <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+            <?= $question->created ?></p>
             <!-- Question tags -->
             <div class="level is-mobile">
                 <div class="level-left">
@@ -63,8 +68,13 @@ if ($noOfAnswers == 1) {
             <!-- Comments to the question -->
             <?php foreach ($comments as $comment) : ?>
             <?php if (!$comment->answerId) : ?>
-            <?= $comment->comment ?>
 
+            <?php
+            $user = $this->di->get("user")->getUserFromDatabase("id", $comment->userId);
+            ?>
+            <p class="is-size-7"><?= $comment->comment ?> - <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+            <?= $question->created ?></p>
+            <!-- Do semething about this!!!!!!! ABOVE!-->
             <?php endif ?>
             <?php endforeach ?>
             <!-- End of comments to the question -->

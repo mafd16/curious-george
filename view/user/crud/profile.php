@@ -30,7 +30,7 @@ $gravatarhash = md5(strtolower(trim($user->email)));
     <figure class="media-left">
         <p class="image is-64x64">
             <!--<img src="http://bulma.io/images/placeholders/128x128.png">-->
-            <img src="https://www.gravatar.com/avatar/<?= $gravatarhash ?>?s=64" />
+            <img src="https://www.gravatar.com/avatar/<?= $gravatarhash ?>?s=64&d=monsterid" />
         </p>
     </figure>
 </article>

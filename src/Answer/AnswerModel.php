@@ -90,6 +90,28 @@ class AnswerModel implements
     }
 
 
+    /**
+     * Accept an answer
+     *
+     * @param int    $id the answer id
+     *
+     * @return void
+     */
+    public function acceptAnswer($id)
+    {
+        // Connect to db
+        $ans = new Answers();
+        $ans->setDb($this->di->get("db"));
+        // Get the answer
+        $ans->find("id", $id);
+        // Set timestamp
+        $ans->accepted = date("Y-m-d H:i:s");
+        // Save
+        $ans->save();
+        return $ans;
+    }
+
+
 
 
 

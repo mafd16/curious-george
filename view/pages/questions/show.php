@@ -115,6 +115,15 @@ if ($noOfAnswers == 1) {
             <hr>
             <?php foreach ($answers as $answer) : ?>
             <p>
+                <?php if ($question->userId == $this->di->get("session")->get("my_user_id") && !$answer->accepted) : ?>
+                <a class="is-pulled-left" href="<?= $this->di->get("url")->create("answer/accept/$answer->id") ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
+                <?php endif ?>
+
+                <?php if ($answer->accepted) : ?>
+                <div class="is-pulled-left" title="Accepted at <?= $answer->accepted ?>">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </div>
+                <?php endif ?>
                 <?= $answer->answer ?>
             </p>
 

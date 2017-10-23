@@ -50,6 +50,21 @@ class AnswerController implements InjectionAwareInterface
     }
 
 
+    /**
+     * Accept the answer.
+     *
+     * @return void
+     */
+    public function acceptAnswer($id)
+    {
+        // Instruct Model to accept answer:
+        $answer = $this->di->get("answerModel")->acceptAnswer($id);
+        // Redirect back to the question page:
+        $url = $this->di->get("url")->create("questions/$answer->questionId");
+        $this->di->get("response")->redirect($url);
+    }
+
+
 
 
 

@@ -181,7 +181,7 @@ class UserController implements
     public function validateUser()
     {
         // Get POST-variables
-        $acronym = $this->request->getPost("name");
+        //$acronym = $this->request->getPost("name");
         $email = $this->request->getPost("email");
         $password = $this->request->getPost("password");
         // Get the user from DB
@@ -197,7 +197,8 @@ class UserController implements
         }
 
         // Validate password against database
-        $valid = $user->verifyPassword($acronym, $password);
+        $valid = $user->verifyPassword($user->acronym, $password);
+
         // if true, save user id to session and goto profile
         if ($valid) {
             // Save user id to session
@@ -207,7 +208,7 @@ class UserController implements
             // if false goto login
             $title = "A login page";
             $data = [
-                "acronym" => $acronym,
+                "acronym" => $user->acronym,
                 "password" => $password,
                 "valid" => $valid,
                 "message" => "Name or password was incorrect!",
@@ -270,15 +271,28 @@ class UserController implements
         // Get user id from session
         $id = $this->session->get("my_user_id");
         // Update user
-        $update = (object) [
-            "password" => $password,
-            //"email" => $email,
-            "acronym" => $name,
-            "slogan" => $slogan,
-            "birth" => $birth,
-            "city" => $city,
-            "country" => $country,
-        ];
+        if ($password) {
+            $update = (object) [
+                "password" => $password,
+                //"email" => $email,
+                "acronym" => $name,
+                "slogan" => $slogan,
+                "birth" => $birth,
+                "city" => $city,
+                "country" => $country,
+            ];
+        } else {
+            $update = (object) [
+                //"password" => $password,
+                //"email" => $email,
+                "acronym" => $name,
+                "slogan" => $slogan,
+                "birth" => $birth,
+                "city" => $city,
+                "country" => $country,
+            ];
+        }
+
         $user = $this->di->get("user")->updateUserInDatabase($id, $update);
         $this->di->get("user")->saveToSession($user);
         // Redirect back to profile
@@ -377,15 +391,28 @@ class UserController implements
             $this->getAdminUpdateUser($message, $userId);
         }
         // Update user
-        $update = (object) [
-            "password" => $password,
-            //"email" => $email,
-            "admin" => $admin,
-            "slogan" => $slogan,
-            "birth" => $birth,
-            "city" => $city,
-            "country" => $country,
-        ];
+        if ($password) {
+            $update = (object) [
+                "password" => $password,
+                //"email" => $email,
+                "admin" => $admin,
+                "slogan" => $slogan,
+                "birth" => $birth,
+                "city" => $city,
+                "country" => $country,
+            ];
+        } else {
+            $update = (object) [
+                //"password" => $password,
+                //"email" => $email,
+                "admin" => $admin,
+                "slogan" => $slogan,
+                "birth" => $birth,
+                "city" => $city,
+                "country" => $country,
+            ];
+        }
+
         $this->di->get("user")->updateUserInDatabase($userId, $update);
         // Redirect back to admin page
         $this->response->redirect("user/admin");

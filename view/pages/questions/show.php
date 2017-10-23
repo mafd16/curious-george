@@ -84,7 +84,8 @@ if ($noOfAnswers == 1) {
             <!-- End of comments to the question -->
             <br>
             <!-- Post a new comment to the question -->
-            <a class="is-size-7" onclick="togglePostComment()">
+            <!--<a class="is-size-7" onclick="togglePostComment()">-->
+            <a class="is-size-7 comment-question">
                 Comment the question
             </a>
             <br>

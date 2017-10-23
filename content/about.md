@@ -1,39 +1,46 @@
 ---
-title: "Om sidan"
+title: "About"
 ...
 
 <section class="section">
   <div class="container">
     <h1 class="title">
-      Om Ramverk1
+      About this webpage
     </h1>
     <p class="subtitle">
-        Kursen som ges vid Blekinge Tekniska Högskola
+        A Stack Overflow replica as examination for the course Ramverk1 at Blekinge Institute of Technology
     </p>
-    <br>
     <p>
-        I kursen lär vi oss mer ingående hur ett MVC-ramverk fungerar. Vi arbetar
-        med HTML, CSS, PHP och med databas. Vi strukturerar och återanvänder. Vi
-        kollar även på testning.
+        Create an account, and start asking questions. You can answer other peoples questions and comment on questions and answers. The subject is "All about Disney". Enjoy!
     </p>
-    <br>
-    <p>
-        Koden som används och produceras kan du finna på
-        <a href="https://github.com/mafd16/ramverk1">Github</a>.
-    </p>
-    <br>
-    <img src="image/github-logo.png">
-    <br>
     <br>
 
-    <p class="is-size-7">Icons made by
-        <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">
-        Dave Gandy</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-        is licensed by
-        <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">
-        CC 3.0 BY</a>
+
+
+    <h1 class="title">
+      Github
+    </h1>
+    <p class="subtitle">
+        The code for this page is on Github
     </p>
+    <p>
+        Check it out <a href="https://github.com/mafd16/curious-george">here</a>.
+    </p>
+    <br>
+
+
+
+    <h1 class="title">
+      About me
+    </h1>
+    <p class="subtitle">
+        The creator of this page
+    </p>
+    <p>
+        I'm a student at the program web-programming at BTH - Blekinge Institute of Technology. I'm in my second year studying html, css, php, python, javascript and much much more. Regards,
+    </p>
+    <code>Martin Fagerlund, mafd16</code>
+    <br>
 
 
   </div>

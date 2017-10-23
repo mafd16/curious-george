@@ -6,7 +6,6 @@ A Stack Overflow replica as examination for the course Ramverk1 at Blekinge Inst
 [![Build Status](https://travis-ci.org/mafd16/curious-george.svg?branch=master)](https://travis-ci.org/mafd16/curious-george)
 [![Build Status](https://scrutinizer-ci.com/g/mafd16/curious-george/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mafd16/curious-george/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mafd16/curious-george/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mafd16/curious-george/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/mafd16/curious-george/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mafd16/curious-george/?branch=master)
 
 Mafd16 Curious George.
 

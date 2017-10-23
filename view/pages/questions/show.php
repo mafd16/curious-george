@@ -30,13 +30,13 @@ if ($noOfAnswers == 1) {
             <hr>
             <!-- The question itself -->
             <?= $question->question ?>
-            <br>
             <p class="is-size-7">Asked by
             <?php
             $user = $this->di->get("user")->getUserFromDatabase("id", $question->userId);
             ?>
             <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
             <?= $question->created ?></p>
+            <br>
             <!-- Question tags -->
             <div class="level is-mobile">
                 <div class="level-left">
@@ -68,13 +68,17 @@ if ($noOfAnswers == 1) {
             <!-- Comments to the question -->
             <?php foreach ($comments as $comment) : ?>
             <?php if (!$comment->answerId) : ?>
+            <div class="is-size-7 is-pulled-left">
+            <?= $comment->comment ?>
+            </div>
 
             <?php
             $user = $this->di->get("user")->getUserFromDatabase("id", $comment->userId);
             ?>
-            <p class="is-size-7"><?= $comment->comment ?> - <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
-            <?= $question->created ?></p>
-            <!-- Do semething about this!!!!!!! ABOVE!-->
+            <div class="is-size-7"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+            <?= $comment->created ?>
+            </div>
+
             <?php endif ?>
             <?php endforeach ?>
             <!-- End of comments to the question -->
@@ -112,12 +116,30 @@ if ($noOfAnswers == 1) {
             <p>
                 <?= $answer->answer ?>
             </p>
+
+            <p class="is-size-7">Answered by
+            <?php
+            $user = $this->di->get("user")->getUserFromDatabase("id", $answer->userId);
+            ?>
+            <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+            <?= $answer->created ?></p>
             <br>
+
+            
             <!-- Comments to the answer -->
             <?php foreach ($comments as $comment) : ?>
             <p>
             <?php if ($comment->answerId == $answer->id) : ?>
+                <div class="is-size-7 is-pulled-left">
                 <?= $comment->comment ?>
+                </div>
+
+                <?php
+                $user = $this->di->get("user")->getUserFromDatabase("id", $comment->userId);
+                ?>
+                <div class="is-size-7"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+                <?= $comment->created ?>
+                </div>
             <?php endif ?>
             </p>
             <?php endforeach ?>

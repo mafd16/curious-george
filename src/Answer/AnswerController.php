@@ -65,7 +65,34 @@ class AnswerController implements InjectionAwareInterface
     }
 
 
+    /**
+     * Vote plus one for answer.
+     *
+     * @return void
+     */
+    public function votePlusOne($id)
+    {
+        // Instruct Model to plus one:
+        $answer = $this->di->get("answerModel")->votePlusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$answer->questionId");
+        $this->di->get("response")->redirect($url);
+    }
 
+
+    /**
+     * Vote minus one for answer.
+     *
+     * @return void
+     */
+    public function voteMinusOne($id)
+    {
+        // Instruct Model to minus one:
+        $answer = $this->di->get("answerModel")->voteMinusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$answer->questionId");
+        $this->di->get("response")->redirect($url);
+    }
 
 
 

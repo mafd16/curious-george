@@ -89,7 +89,48 @@ class CommentModel implements
     }
 
 
+    /**
+     * Vote plus one for comment.
+     *
+     * @param int    $id The comment id.
+     *
+     * @return object The comment object
+     */
+    public function votePlusOne($id)
+    {
+        // Connect to db
+        $comments = new Comments();
+        $comments->setDb($this->di->get("db"));
+        // Get the answer
+        $comments->find("id", $id);
+        // Add one
+        $comments->rank += 1;
+        // Save
+        $comments->save();
+        return $comments;
+    }
 
+
+    /**
+     * Vote minus one for answer.
+     *
+     * @param int    $id The answer id.
+     *
+     * @return object The answer object
+     */
+    public function voteMinusOne($id)
+    {
+        // Connect to db
+        $comments = new Comments();
+        $comments->setDb($this->di->get("db"));
+        // Get the comment
+        $comments->find("id", $id);
+        // Minus one
+        $comments->rank -= 1;
+        // Save
+        $comments->save();
+        return $comments;
+    }
 
 
 

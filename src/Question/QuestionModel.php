@@ -167,6 +167,66 @@ class QuestionModel implements
 
 
     /**
+     * Vote plus one for question.
+     *
+     * @param int    $id The question id.
+     *
+     * @return object The question object
+     */
+    public function votePlusOne($id)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Get the question
+        $que->find("id", $id);
+        // Add one
+        $que->rank += 1;
+        // Save
+        $que->save();
+        return $que;
+    }
+
+
+    /**
+     * Vote minus one for question.
+     *
+     * @param int    $id The question id.
+     *
+     * @return object The question object
+     */
+    public function voteMinusOne($id)
+    {
+        // Connect to db
+        $que = new Questions();
+        $que->setDb($this->di->get("db"));
+        // Get the question
+        $que->find("id", $id);
+        // Minus one
+        $que->rank -= 1;
+        // Save
+        $que->save();
+        return $que;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * Get ALL comments from session
      * EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT! EDIT!
      *

@@ -40,5 +40,17 @@
              "path" => "tagged/{tag:digit}",
              "callable" => ["questionController", "getQuestionsWithTag"],
          ],
+         [
+             "info" => "Vote +1 for question.",
+             "requestMethod" => "get",
+             "path" => "voteup/{id:digit}",
+             "callable" => ["questionController", "votePlusOne"],
+         ],
+         [
+             "info" => "Vote -1 for question.",
+             "requestMethod" => "get",
+             "path" => "votedown/{id:digit}",
+             "callable" => ["questionController", "voteMinusOne"],
+         ],
      ]
  ];

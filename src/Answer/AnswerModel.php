@@ -95,7 +95,7 @@ class AnswerModel implements
      *
      * @param int    $id the answer id
      *
-     * @return void
+     * @return object The answer object
      */
     public function acceptAnswer($id)
     {
@@ -112,7 +112,48 @@ class AnswerModel implements
     }
 
 
+    /**
+     * Vote plus one for answer.
+     *
+     * @param int    $id The answer id.
+     *
+     * @return object The answer object
+     */
+    public function votePlusOne($id)
+    {
+        // Connect to db
+        $ans = new Answers();
+        $ans->setDb($this->di->get("db"));
+        // Get the answer
+        $ans->find("id", $id);
+        // Add one
+        $ans->rank += 1;
+        // Save
+        $ans->save();
+        return $ans;
+    }
 
+
+    /**
+     * Vote minus one for answer.
+     *
+     * @param int    $id The answer id.
+     *
+     * @return object The answer object
+     */
+    public function voteMinusOne($id)
+    {
+        // Connect to db
+        $ans = new Answers();
+        $ans->setDb($this->di->get("db"));
+        // Get the answer
+        $ans->find("id", $id);
+        // Minus one
+        $ans->rank -= 1;
+        // Save
+        $ans->save();
+        return $ans;
+    }
 
 
 

@@ -30,12 +30,26 @@ if ($noOfAnswers == 1) {
             <hr>
             <!-- The question itself -->
             <?= $question->question ?>
+
             <p class="is-size-7">Asked by
             <?php
             $user = $this->di->get("user")->getUserFromDatabase("id", $question->userId);
             ?>
             <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
             <?= $question->created ?></p>
+
+            <!-- Vote question -->
+            <a title="Vote +1" class="is-pulled-left" href="<?= $this->di->get("url")->create("questions/voteup/$question->id") ?>">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            </a>
+            <div class="is-pulled-left">
+                <span class="tag is-white"><?= isset($question->rank) ? $question->rank : "0" ?></span>
+            </div>
+            <a title="Vote -1" class="is-pulled-left" href="<?= $this->di->get("url")->create("questions/votedown/$question->id") ?>">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <!-- End of Vote question -->
+            <br>
             <br>
             <!-- Question tags -->
             <div class="level is-mobile">
@@ -75,14 +89,37 @@ if ($noOfAnswers == 1) {
             <?php
             $user = $this->di->get("user")->getUserFromDatabase("id", $comment->userId);
             ?>
-            <div class="is-size-7"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+            <div class="is-size-7 is-pulled-left"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
             <?= $comment->created ?>
             </div>
+
+
+            <!-- Vote comment -->
+            <div class="is-size-7">
+                <a title="Vote +1" class="is-pulled-left" href="<?= $this->di->get("url")->create("comment/voteup/$comment->id") ?>">
+                    <!--<i class="fa fa-angle-up" aria-hidden="true"></i>-->
+                    <span class="tag is-white">+1</span>
+                </a>
+                <div class="is-pulled-left">
+                    <span class="tag is-light"><?= isset($comment->rank) ? $comment->rank : "0" ?></span>
+                </div>
+                <a title="Vote -1" href="<?= $this->di->get("url")->create("comment/votedown/$comment->id") ?>">
+                    <!--<i class="fa fa-angle-down" aria-hidden="true"></i>-->
+                    <span class="tag is-white">-1</span>
+                </a>
+            </div>
+            <!-- End of Vote comment -->
+
+
 
             <?php endif ?>
             <?php endforeach ?>
             <!-- End of comments to the question -->
+
+
             <br>
+
+
             <!-- Post a new comment to the question -->
             <!--<a class="is-size-7" onclick="togglePostComment()">-->
             <a class="is-size-7 comment-question">
@@ -133,6 +170,21 @@ if ($noOfAnswers == 1) {
             ?>
             <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
             <?= $answer->created ?></p>
+
+
+            <!-- Vote answer -->
+            <a title="Vote +1" class="is-pulled-left" href="<?= $this->di->get("url")->create("answer/voteup/$answer->id") ?>">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            </a>
+            <div class="is-pulled-left">
+                <span class="tag is-white"><?= isset($answer->rank) ? $answer->rank : "0" ?></span>
+            </div>
+            <a title="Vote -1" class="is-pulled-left" href="<?= $this->di->get("url")->create("answer/votedown/$answer->id") ?>">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <!-- End of Vote answer -->
+
+            <br>
             <br>
 
 
@@ -147,9 +199,28 @@ if ($noOfAnswers == 1) {
                 <?php
                 $user = $this->di->get("user")->getUserFromDatabase("id", $comment->userId);
                 ?>
-                <div class="is-size-7"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
+                <div class="is-size-7 is-pulled-left"> &rarr; <a href="<?= $this->di->get("url")->create("users/$user->id") ?>"><?= $user->acronym ?></a>
                 <?= $comment->created ?>
                 </div>
+
+                <!-- Vote comment -->
+                <div class="is-size-7">
+                    <a title="Vote +1" class="is-pulled-left" href="<?= $this->di->get("url")->create("comment/voteup/$comment->id") ?>">
+                        <!--<i class="fa fa-angle-up" aria-hidden="true"></i>-->
+                        <span class="tag is-white">+1</span>
+                    </a>
+                    <div class="is-pulled-left">
+                        <span class="tag is-light"><?= isset($comment->rank) ? $comment->rank : "0" ?></span>
+                    </div>
+                    <a title="Vote -1" href="<?= $this->di->get("url")->create("comment/votedown/$comment->id") ?>">
+                        <!--<i class="fa fa-angle-down" aria-hidden="true"></i>-->
+                        <span class="tag is-white">-1</span>
+                    </a>
+                </div>
+                <!-- End of Vote comment -->
+
+
+
             <?php endif ?>
             </p>
             <?php endforeach ?>

@@ -48,6 +48,34 @@ class CommentController implements InjectionAwareInterface
     }
 
 
+    /**
+     * Vote plus one for comment.
+     *
+     * @return void
+     */
+    public function votePlusOne($id)
+    {
+        // Instruct Model to plus one:
+        $comment = $this->di->get("com")->votePlusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$comment->questionId");
+        $this->di->get("response")->redirect($url);
+    }
+
+
+    /**
+     * Vote minus one for comment.
+     *
+     * @return void
+     */
+    public function voteMinusOne($id)
+    {
+        // Instruct Model to minus one:
+        $comment = $this->di->get("com")->voteMinusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$comment->questionId");
+        $this->di->get("response")->redirect($url);
+    }
 
 
 

@@ -155,9 +155,34 @@ class QuestionController implements InjectionAwareInterface
     }
 
 
+    /**
+     * Vote plus one for question.
+     *
+     * @return void
+     */
+    public function votePlusOne($id)
+    {
+        // Instruct Model to plus one:
+        $question = $this->di->get("questionModel")->votePlusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$question->id");
+        $this->di->get("response")->redirect($url);
+    }
 
 
-
+    /**
+     * Vote minus one for question.
+     *
+     * @return void
+     */
+    public function voteMinusOne($id)
+    {
+        // Instruct Model to minus one:
+        $question = $this->di->get("questionModel")->voteMinusOne($id);
+        // Redirect back to the questions page:
+        $url = $this->di->get("url")->create("questions/$question->id");
+        $this->di->get("response")->redirect($url);
+    }
 
 
 

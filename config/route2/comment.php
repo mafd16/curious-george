@@ -40,5 +40,29 @@
              "path" => "answer/accept/{id:digit}",
              "callable" => ["answerController", "acceptAnswer"]
          ],
+         [
+             "info" => "Vote +1 for answer.",
+             "requestMethod" => "get",
+             "path" => "answer/voteup/{id:digit}",
+             "callable" => ["answerController", "votePlusOne"],
+         ],
+         [
+             "info" => "Vote -1 for answer.",
+             "requestMethod" => "get",
+             "path" => "answer/votedown/{id:digit}",
+             "callable" => ["answerController", "voteMinusOne"],
+         ],
+         [
+             "info" => "Vote +1 for comment.",
+             "requestMethod" => "get",
+             "path" => "comment/voteup/{id:digit}",
+             "callable" => ["comController", "votePlusOne"],
+         ],
+         [
+             "info" => "Vote -1 for comment.",
+             "requestMethod" => "get",
+             "path" => "comment/votedown/{id:digit}",
+             "callable" => ["comController", "voteMinusOne"],
+         ],
      ]
  ];

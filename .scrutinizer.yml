@@ -10,11 +10,3 @@ build:
         before:
             -
                 command: "mkdir build"
-
-    tests:
-        override:
-            -
-                command: "phpunit --configuration .phpunit.xml"
-                coverage:
-                    file: "build/coverage.clover"
-                    format: "php-clover"

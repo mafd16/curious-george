@@ -15,11 +15,7 @@ $tagCount = 0;
         </p>
         <br>
 
-
-
-
             <?php foreach ($tags as $tag) : ?>
-
             <?php if ($tagCount == 0) : ?>
             <div class="level is-mobile">
                 <div class="level-left">

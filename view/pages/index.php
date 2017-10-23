@@ -87,7 +87,6 @@ $userCount = 0;
                     <h1 class=subtitle>Most popular tags</h1>
                     <hr>
                     <?php foreach ($tags as $tag) : ?>
-
                     <?php if ($tagCount == 0) : ?>
                     <div class="level is-mobile">
                         <div class="level-left">

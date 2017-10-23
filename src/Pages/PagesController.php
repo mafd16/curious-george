@@ -182,8 +182,8 @@ class PagesController implements
         $title = "User $user->acronym";
         // Calculate age for user
         $from = new DateTime($user->birth);
-        $to   = new DateTime('today');
-        $age = $from->diff($to)->y;
+        $too   = new DateTime('today');
+        $age = $from->diff($too)->y;
         // Collect the user statistics
         $stats = (object) [
             "questions" => count($askedQuestions),

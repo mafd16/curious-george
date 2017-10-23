@@ -25,7 +25,6 @@ $questions = isset($questions) ? $questions : null;
             <br>
 
             <?php foreach (array_reverse($questions) as $question) : ?>
-
             <article class="media">
                 <!--<figure class="media-left">
                     <p class="image is-64x64">-->

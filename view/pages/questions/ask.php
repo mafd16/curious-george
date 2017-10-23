@@ -18,7 +18,6 @@ $tags = isset($tags) ? $tags : null;
 
 
         <?php if ($di->get("session")->has("my_user_id")) : ?>
-
             <div class="columns is-mobile">
                 <div class="column is-two-third-tablet is-half-desktop">
                     <form action=<?= $di->get("url")->create("questions/add"); ?> method="post">
@@ -31,7 +30,7 @@ $tags = isset($tags) ? $tags : null;
                         <input list="tags" class="input" name="tag3"><br><br>
 
                         <datalist id="tags">
-                        <?php foreach ($tags as $tag): ?>
+                        <?php foreach ($tags as $tag) : ?>
                             <option value="<?= $tag->tag ?>">
                         <?php endforeach ?>
 

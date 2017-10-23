@@ -125,7 +125,7 @@ if ($noOfAnswers == 1) {
             <?= $answer->created ?></p>
             <br>
 
-            
+
             <!-- Comments to the answer -->
             <?php foreach ($comments as $comment) : ?>
             <p>
@@ -182,7 +182,6 @@ if ($noOfAnswers == 1) {
             </p>
 
             <?php if ($di->get("session")->has("my_user_id")) : ?>
-
             <div class="columns is-mobile">
                 <div class="column is-two-third-tablet is-half-desktop">
                     <form action=<?= $di->get("url")->create("questions/answer"); ?> method="post">

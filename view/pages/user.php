@@ -67,7 +67,6 @@ $gravatarhash = md5(strtolower(trim($user->email)));
                     <hr>
 
                     <?php foreach (array_reverse($askedQuestions) as $question) : ?>
-
                         <article class="media">
                             <div class="media-content">
                                 <div class="content">
@@ -127,7 +126,6 @@ $gravatarhash = md5(strtolower(trim($user->email)));
                     <hr>
 
                     <?php foreach (array_reverse($answeredQuestions) as $question) : ?>
-
                         <article class="media">
                             <div class="media-content">
                                 <div class="content">

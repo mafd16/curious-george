@@ -128,12 +128,12 @@ class QuestionModel implements
      */
     public function getQuestionsAnsweredByUser($answers)
     {
-        $AQ = array();
+        $ansQue = array();
         foreach ($answers as $answer) {
             $temp = $this->getQuestion("id", $answer->questionId);
-            $AQ[$temp->id] = $temp;
+            $ansQue[$temp->id] = $temp;
         };
-        $res = $AQ;
+        $res = $ansQue;
         return $res;
     }
 

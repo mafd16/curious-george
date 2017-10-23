@@ -379,7 +379,7 @@ class UserController implements
         // Update user
         $update = (object) [
             "password" => $password,
-            "email" => $email,
+            //"email" => $email,
             "admin" => $admin,
             "slogan" => $slogan,
             "birth" => $birth,

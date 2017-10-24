@@ -159,6 +159,7 @@ class QuestionModel implements
         $que->tag1Id = $question->tag1Id;
         $que->tag2Id = $question->tag2Id;
         $que->tag3Id = $question->tag3Id;
+        $que->rank = 0;
         $que->created = date("Y-m-d H:i:s");
 
         // Save

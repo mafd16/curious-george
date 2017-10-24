@@ -64,6 +64,7 @@ class CommentModel implements
         $com->answerId = $comment->answerId;
         $com->userId = $comment->userId;
         $com->comment = $comment->comment;
+        $com->rank = 0;
         $com->created = date("Y-m-d H:i:s");
         // Save
         $com->save();

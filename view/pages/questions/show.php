@@ -149,6 +149,7 @@ if ($noOfAnswers == 1) {
             <br>
             <!-- Answers to the question -->
             <p class="is-size-4"><?= $number ?></p>
+            <a href="<?= $this->di->get("url")->create("questions/$question->id?sort=date") ?>">By date</a> | <a href="<?= $this->di->get("url")->create("questions/$question->id?sort=rank") ?>">By rank</a>
             <hr>
             <?php foreach ($answers as $answer) : ?>
             <p>

@@ -65,6 +65,7 @@ class AnswerModel implements
         $ans->userId = $answer->userId;
         $ans->answer = $answer->answer;
         $ans->created = date("Y-m-d H:i:s");
+        $ans->rank = 0;
 
         // Save
         $ans->save();

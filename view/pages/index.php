@@ -33,6 +33,24 @@ $userCount = 0;
                                         </a>
                                     </strong>
 
+
+                                    <div class="field is-grouped is-grouped-multiline">
+                                        <div class="control">
+                                            <div class="tags has-addons">
+                                                <span class="tag is-light">Answers</span>
+                                                <span class="tag is-white"><?= $noOfAnswers[$question->id] ?></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="control">
+                                            <div class="tags has-addons">
+                                                <span class="tag is-light">Rank</span>
+                                                <span class="tag is-white"><?= $question->rank ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <?php
                                     if (substr($question->question, 0, 30) == $question->question) {
                                         $dots = null;

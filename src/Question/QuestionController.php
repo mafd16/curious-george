@@ -101,11 +101,24 @@ class QuestionController implements InjectionAwareInterface
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
+        // Get eventual get-variable for sorting purposes
+        $sort = $this->di->get("request")->getGet("sort");
+
         // Get the question
         $question = $this->di->get("questionModel")->getQuestion("id", $id);
 
         // Get the answers
         $answers = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
+
+        // Sort the answers if sort == rank
+        if ($sort == "rank") {
+            uasort($answers, function ($answerA, $answerB) {
+                if ($answerA->rank == $answerB->rank) {
+                    return 0;
+                }
+                return ($answerA->rank < $answerB->rank) ? 1 : -1;
+            });
+        }
 
         // Get the comments
         $comments = $this->di->get("com")->getCommentsWhere("questionId", $question->id);
@@ -139,6 +152,13 @@ class QuestionController implements InjectionAwareInterface
         // Get all the questions
         $questions = $this->di->get("questionModel")->getQuestionsWithTag($tag);
 
+        // Get number of answers
+        $answers = [];
+        foreach ($questions as $question) {
+            $ans = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
+            $answers[$question->id] = count($ans);
+        }
+
         // Get the tag name
         $tagName = $this->di->get("tagModel")->getTagName($tag);
 
@@ -148,6 +168,7 @@ class QuestionController implements InjectionAwareInterface
         $data = [
             "questions" => $questions,
             "subtitle" => $subtitle,
+            "noOfAnswers" => $answers,
         ];
 
         $view->add("pages/questions", $data);

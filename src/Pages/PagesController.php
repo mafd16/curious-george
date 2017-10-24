@@ -48,6 +48,13 @@ class PagesController implements
         });
         $questions = array_slice($ques, 0, 5);
 
+        // Get number of answers
+        $answers = [];
+        foreach ($questions as $question) {
+            $ans = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
+            $answers[$question->id] = count($ans);
+        }
+
         // Get the most popular tags
         $tags = $this->di->get("tagModel")->getAllTags();
         uasort($tags, function ($tagA, $tagB) {
@@ -72,6 +79,7 @@ class PagesController implements
             "questions" => $questions,
             "tags" => $tags,
             "users" => $users,
+            "noOfAnswers" => $answers,
         ];
 
         $view->add("pages/index", $data);
@@ -95,9 +103,17 @@ class PagesController implements
         // Get all the questions
         $questions = $this->di->get("questionModel")->getQuestions();
 
+        // Get number of answers
+        $answers = [];
+        foreach ($questions as $question) {
+            $ans = $this->di->get("answerModel")->getAnswersWhere("questionId", $question->id);
+            $answers[$question->id] = count($ans);
+        }
+
         $data = [
             "questions" => $questions,
             "subtitle" => $subtitle,
+            "noOfAnswers" => $answers,
         ];
 
         $view->add("pages/questions", $data);

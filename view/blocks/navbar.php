@@ -21,7 +21,7 @@
         Other links in the navbar is created below. -->
         <div class="navbar-brand">
             <!--<a class="navbar-item" href="http://bulma.io">Ramverk1</a>-->
-            <a class="navbar-item" href=<?= $di->url->create(); ?>>Curious George</a>
+            <a class="navbar-item" href=<?= $di->url->create(); ?>>Curious Walt</a>
 
             <div class="navbar-burger burger" data-target="navMenu">
                 <span></span>

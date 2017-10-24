@@ -14,6 +14,29 @@ Check-out and Install
 
 Use Git to clone the repository. Find link above.
 
+Run Composer update
+-------------------
+    composer update
+
+Fix some code
+-------------
+
+Insert/replace the following into vendor/anax/page/src/Page/PageRender.php
+
+    $data["stylesheets"] = [
+        //"css/style.css",
+        "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"
+        //"css/style.css"
+        //"css/remserver.css"
+    ];
+
+and
+
+    $view->add("blocks/navbar", [], "navbar");
+    $view->add("blocks/header", [], "header");
+    $view->add("blocks/footer", [], "footer");
+
 Set up and configure an sqlite database
 ------------------------------------------
 

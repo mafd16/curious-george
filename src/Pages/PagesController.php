@@ -34,7 +34,7 @@ class PagesController implements
      */
     public function getIndex()
     {
-        $title      = "Curious George";
+        $title      = "Curious Walt";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
